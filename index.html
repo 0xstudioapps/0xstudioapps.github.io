@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0X Studio Beta</title>
+<meta name="description" content="CutPlan ve LayPlan'ı herkese açılmadan önce dene. Try CutPlan and LayPlan before they launch.">
+<meta property="og:title" content="0X Studio Beta">
+<meta property="og:description" content="CutPlan (kesim planı) ve LayPlan (fayans hesabı) test sürümleri. Ücretsiz, reklamsız, internetsiz.">
+<meta property="og:image" content="https://0xstudioapps.github.io/og.jpg">
+<meta property="og:url" content="https://0xstudioapps.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="cutplan.png">
+<style>
+  :root {
+    --bg: #0b0c0f; --card: #15171c; --line: #262a31; --ink: #f2f3f5; --muted: #a9b0bb;
+    --mars: #e2783a; --mars-ink: #1a0d05; --teal: #2dd4bf; --teal-ink: #04201c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 56px; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; }
+  .brand img { height: 30px; width: auto; }
+  .lang { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .lang button { background: none; border: 0; color: var(--muted); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--line); color: var(--ink); }
+  h1 { font-size: 28px; line-height: 1.2; margin: 8px 0 8px; }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+  .app { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+  .app img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+  .app h2 { font-size: 20px; margin: 0; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
+  .cut .tag { background: rgba(226,120,58,.15); color: var(--mars); }
+  .lay .tag { background: rgba(45,212,191,.12); color: var(--teal); }
+  .card > p { color: var(--muted); margin: 0 0 16px; }
+  ol { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  ol li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 4px 10px; align-items: start; padding: 12px 0; border-top: 1px solid var(--line); }
+  ol li::before { content: counter(s); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 700; background: var(--line); }
+  ol li b { display: block; }
+  ol li small { color: var(--muted); display: block; margin-top: 2px; }
+  .btn { grid-column: 2; justify-self: start; display: inline-block; margin-top: 8px; padding: 10px 16px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .cut .btn { background: var(--mars); color: var(--mars-ink); }
+  .lay .btn { background: var(--teal); color: var(--teal-ink); }
+  .btn.ghost { background: none !important; border: 1px solid var(--line); color: var(--ink) !important; }
+  .note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+  footer { color: var(--muted); font-size: 14px; margin-top: 28px; text-align: center; }
+  footer a { color: var(--ink); }
+  [data-l] { display: none; }
+  html[lang="tr"] [data-l="tr"], html[lang="en"] [data-l="en"] { display: revert; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand"><img src="logo.svg" alt="0X Studio"><span>Beta</span></div>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button type="button" data-set="tr">TR</button><button type="button" data-set="en">EN</button>
+    </div>
+  </header>
+
+  <h1><span data-l="tr">Herkesten önce sen dene</span><span data-l="en">Try it before everyone else</span></h1>
+  <p class="lead">
+    <span data-l="tr">Ustalar ve üreticiler için hesap uygulamaları. Ücretsiz, reklamsız, internetsiz çalışır.</span>
+    <span data-l="en">Calculator apps for makers and tradespeople. Free, no ads, works offline.</span>
+  </p>
+
+  <section class="card cut">
+    <div class="app">
+      <img src="cutplan.png" alt="">
+      <div>
+        <h2>CutPlan</h2>
+        <span class="tag"><span data-l="tr">Videoda gördüğün uygulama</span><span data-l="en">The app from the video</span></span>
+      </div>
+    </div>
+    <p>
+      <span data-l="tr">Sunta, MDF, kontrplak ve profiller için az fireli kesim planı. Usta modu ile daha az kesim, PDF ve parça etiketleri.</span>
+      <span data-l="en">Cutting plans for sheets and bars with less waste. Shop mode for fewer cuts, PDF and part labels.</span>
+    </p>
+    <ol>
+      <li>
+        <div>
+          <b><span data-l="tr">Beta grubuna katıl</span><span data-l="en">Join the beta group</span></b>
+          <small><span data-l="tr">Telefonundaki Play Store'da hangi Google hesabı açıksa onunla katıl.</span><span data-l="en">Use the same Google account as the Play Store on your phone.</span></small>
+        </div>
+        <a class="btn" href="https://groups.google.com/g/0x-studio-beta"><span data-l="tr">Gruba katıl</span><span data-l="en">Join group</span></a>
+      </li>
+      <li>
+        <div>
+          <b><span data-l="tr">Test kullanıcısı ol</span><span data-l="en">Become a tester</span></b>
+          <small><span data-l="tr">Açılan sayfada "Test kullanıcısı ol"a dokun.</span><span data-l="en">Tap "Become a tester" on the page that opens.</span></small>
+        </div>
+        <a class="btn" href="https://play.google.com/apps/testing/com.zeroxstudio.cutplan"><span data-l="tr">CutPlan testine katıl</span><span data-l="en">Join CutPlan test</span></a>
+      </li>
+      <li>
+        <div><b><span data-l="tr">Uygulamayı indir</span><span data-l="en">Install the app</span></b></div>
+        <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan"><span data-l="tr">Google Play'de aç</span><span data-l="en">Open on Google Play</span></a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card lay">
+    <div class="app">
+      <img src="layplan.png" alt="">
+      <div>
+        <h2>LayPlan</h2>
+        <span class="tag"><span data-l="tr">Yeni · fayans hesabı</span><span data-l="en">New · tile calculator</span></span>
+      </div>
+    </div>
+    <p>
+      <span data-l="tr">Almadan önce kaç karo ve kutu gerektiği, ne kadar tutacağı ve duvar dibinde ince şerit kalmasın diye nereden başlanacağı.</span>
+      <span data-l="en">Before you buy: how many tiles and boxes, what it costs, and where to start so no thin strips are left at the walls.</span>
+    </p>
+    <ol>
+      <li>
+        <div><b><span data-l="tr">Aynı beta grubu</span><span data-l="en">Same beta group</span></b>
+        <small><span data-l="tr">Yukarıda katıldıysan bu adımı geç.</span><span data-l="en">Skip this if you joined above.</span></small></div>
+        <a class="btn ghost" href="https://groups.google.com/g/0x-studio-beta"><span data-l="tr">Gruba katıl</span><span data-l="en">Join group</span></a>
+      </li>
+      <li>
+        <div><b><span data-l="tr">Test kullanıcısı ol ve indir</span><span data-l="en">Become a tester and install</span></b></div>
+        <a class="btn" href="https://play.google.com/apps/testing/com.zeroxstudio.layplan"><span data-l="tr">LayPlan testine katıl</span><span data-l="en">Join LayPlan test</span></a>
+      </li>
+    </ol>
+  </section>
+
+  <p class="note">
+    <span data-l="tr">Link "bulunamadı" derse: gruba katılımın işlenmesi birkaç dakika sürebilir, yeni test sürümleri de Google onayından sonra açılır. Biraz sonra tekrar dene.</span>
+    <span data-l="en">If a link says "not found": joining the group can take a few minutes, and new test versions open after Google's review. Try again a little later.</span>
+  </p>
+
+  <footer>
+    <span data-l="tr">Geri bildirim ve sorular:</span><span data-l="en">Feedback and questions:</span>
+    <a href="mailto:0xstudioapps@gmail.com">0xstudioapps@gmail.com</a><br>
+    <span data-l="tr">Gizlilik:</span><span data-l="en">Privacy:</span>
+    <a href="https://0xstudioapps.github.io/cutplan/">CutPlan</a> · <a href="https://0xstudioapps.github.io/layplan/">LayPlan</a>
+  </footer>
+</main>
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var lang = saved || ((navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+    function set(l) {
+      document.documentElement.lang = l;
+      document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === l); });
+      try { localStorage.setItem('lang', l); } catch (e) {}
+    }
+    document.querySelectorAll('.lang button').forEach(function (b) { b.onclick = function () { set(b.dataset.set); }; });
+    set(lang);
+  })();
+</script>
+</body>
+</html>
