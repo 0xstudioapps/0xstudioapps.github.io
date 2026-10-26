@@ -9,7 +9,7 @@
 <script>
   // 0X Cut'tan paylaşılan planlardaki QR ve linkin hedefi. Basılmış QR'lar bu adresi taşır; hedef buradan değişir.
   // Mağaza açılınca LIVE = true: Play'e gider, kaynak (pdf / mesaj) Play Console'da UTM ile ayrı görünür.
-  var LIVE = false;
+  var LIVE = true;
   var source = location.search.indexOf('pdf') >= 0 ? 'pdf' : 'message';
   var target = LIVE
     ? 'https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan&referrer=' +
