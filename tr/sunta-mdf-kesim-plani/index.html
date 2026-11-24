@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunta ve MDF Kesim Planı Hesaplama – Ücretsiz Levha Kesim Programı | 0X Cut</title>
+<meta name="description" content="Ücretsiz levha kesim planı: levha ve parça ölçülerini gir, kaç levha gerektiğini ve kesim yerleşimini saniyede gör. Sunta, MDF, kontrplak. Tarayıcında çalışır.">
+<link rel="canonical" href="https://0xstudioapps.github.io/tr/sunta-mdf-kesim-plani/">
+<link rel="alternate" hreflang="en" href="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<link rel="alternate" hreflang="tr" href="https://0xstudioapps.github.io/tr/sunta-mdf-kesim-plani/">
+<link rel="alternate" hreflang="x-default" href="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="0X Studio">
+<meta property="og:title" content="Sunta ve MDF Kesim Planı">
+<meta property="og:description" content="Ücretsiz levha kesim planı: levha ve parça ölçülerini gir, kaç levha gerektiğini ve kesim yerleşimini saniyede gör. Sunta, MDF, kontrplak. Tarayıcında çalışır.">
+<meta property="og:url" content="https://0xstudioapps.github.io/tr/sunta-mdf-kesim-plani/">
+<meta property="og:image" content="https://0xstudioapps.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/cutplan.png">
+<link rel="stylesheet" href="/assets/calc/calc.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Sunta ve MDF Kesim Planı", "url": "https://0xstudioapps.github.io/tr/sunta-mdf-kesim-plani/", "description": "Ücretsiz levha kesim planı: levha ve parça ölçülerini gir, kaç levha gerektiğini ve kesim yerleşimini saniyede gör. Sunta, MDF, kontrplak. Tarayıcında çalışır.", "inLanguage": "tr", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "0X Studio", "url": "https://0xstudioapps.github.io/"}}</script>
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="brand" href="/"><img src="/logo.svg" alt="0X Studio" width="39" height="26"><span>0X Cut</span></a>
+    <nav class="langs" aria-label="Dil"><a href="/en/cut-list-optimizer/" hreflang="en" lang="en">EN</a><a href="/tr/sunta-mdf-kesim-plani/" hreflang="tr" lang="tr" aria-current="page">TR</a></nav>
+  </header>
+
+  <h1>Sunta ve MDF Kesim Planı</h1>
+  <p class="lead">Levha ve parça ölçülerini gir; kaç levha gerektiğini ve her parçanın nereye düştüğünü gör. Ücretsiz, üyelik yok, ölçülerin cihazından çıkmaz.</p>
+
+  <section class="card" aria-labelledby="sheet-h">
+    <div class="card-title">
+      <h2 id="sheet-h">Levha</h2>
+      <div class="seg" id="units" role="group" aria-label="Birim"><button type="button" data-unit="mm">mm</button><button type="button" data-unit="cm">cm</button><button type="button" data-unit="in">in</button></div>
+    </div>
+    <div class="sheet-dims">
+      <label class="f"><span>Boy (<span data-unit-label>mm</span>)</span><input type="text" id="sl" inputmode="decimal" autocomplete="off"></label>
+      <span class="x">×</span>
+      <label class="f"><span>En (<span data-unit-label>mm</span>)</span><input type="text" id="sw" inputmode="decimal" autocomplete="off"></label>
+    </div>
+    <div class="chips" id="presets" role="group" aria-label="Yaygın levha ölçüleri"></div>
+  </section>
+
+  <section class="card" aria-labelledby="parts-h">
+    <div class="card-title">
+      <h2 id="parts-h">Parçalar</h2>
+      <button type="button" class="btn ghost" id="clear" style="padding:5px 10px;font-size:13px">Temizle</button>
+    </div>
+    <div class="row head" aria-hidden="true"><span>Ad</span><span>Boy</span><span>En</span><span>Adet</span><span></span></div>
+    <div class="rows" id="rows"></div>
+    <div class="row-actions"><button type="button" class="btn ghost" id="add">+ Parça ekle</button></div>
+    <p class="hint">İpucu: Excel&#x27;den ya da mesajdan satırları yapıştırabilirsin (ad, boy, en, adet).</p>
+    <details class="more">
+      <summary>Testere payı, kenar payı, damar</summary>
+      <div class="opts">
+        <label class="f"><span>Testere payı (<span data-unit-label>mm</span>)</span><input type="text" id="kerf" inputmode="decimal" autocomplete="off"></label>
+        <label class="f"><span>Kenar payı (<span data-unit-label>mm</span>)</span><input type="text" id="trim" inputmode="decimal" autocomplete="off"></label>
+        <label class="check"><input type="checkbox" id="grain"><span>Levhada damar var: parçaların boyu levhanın boyuyla aynı yönde kalsın</span></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="res-h">
+    <div class="card-title"><h2 id="res-h">Kesim planı</h2></div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="r-sheets">–</b><span>Levha</span></div>
+      <div class="stat"><b id="r-used">–</b><span><i class="k-used"></i>Kullanılan</span></div>
+      <div class="stat"><b id="r-off">–</b><span><i class="k-off"></i>Artık</span></div>
+      <div class="stat"><b id="r-waste">–</b><span><i class="k-waste"></i>Fire</span></div>
+    </div>
+    <div class="meter" id="meter" aria-hidden="true"><i class="k-used"></i><i class="k-off"></i><i class="k-waste"></i></div>
+    <p class="status" id="status"></p>
+    <div class="warn" id="warn" hidden></div>
+    <noscript><p class="warn">Bu hesaplayıcı JavaScript ister.</p></noscript>
+    <div class="sheets" id="sheets"></div>
+    <div class="share"><button type="button" class="btn ghost" id="share">Planı paylaş</button><small id="share-msg" aria-live="polite"></small></div>
+  </section>
+
+  <section class="card cta" aria-labelledby="cta-h">
+    <div class="cta-head">
+      <img src="/cutplan.png" alt="" width="52" height="52">
+      <div><h2 id="cta-h">Planı testereye götür</h2><p>0X Cut, Android için ücretsiz uygulama</p></div>
+    </div>
+    <ul><li>Her kesim atölye sırasıyla, testerede ayarlanacak şerit ölçüsüyle</li><li>A4 PDF, WhatsApp için resim, Excel ve parça etiketleri</li><li>Bir işte birden çok malzeme, kenar bandı, üçgen ve daire parçalar</li><li>İşlerini kaydeder, internetsiz çalışır</li></ul>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan&amp;hl=tr&amp;referrer=utm_source%3Dweb%26utm_medium%3Dcalculator%26utm_campaign%3Dcut_list_tr">Google Play&#x27;den indir</a>
+    <p class="fine">Ücretsiz, hesap yok, reklam yok. İsteğe bağlı Pro; artık stoğu, logolu teklif, QR etiket ve dolap modülü ekler.</p>
+  </section>
+
+  <article>
+<h2>Kesim planı nasıl çıkarılır?</h2>
+    <ol>
+      <li><b>Levhayı seç.</b> Boyunu ve enini yaz ya da yaygın ölçülerden birine dokun. Birim mm, cm ya da inç olabilir.</li>
+      <li><b>Parçaları yaz.</b> Her ölçü bir satır, yanına adedi. Ad yazmak isteğe bağlı; boş kalanlara A, B, C harfi verilir.</li>
+      <li><b>Planı oku.</b> Plan sen yazdıkça yenilenir. Her levha ölçekli çizilir; parçaların adı ve ölçüsü üstünde yazar.</li>
+    </ol>
+
+    <h2>Kullanılan, artık ve fire ayrı şeylerdir</h2>
+    <p>%84'ü kullanılan bir levha %16 fire demek değildir. Kalanın bir kısmı çoğu zaman sonraki işe saklanacak temiz bir artıktır: çekmece tabanı, raf, küçük bir dolap arkalığı. Bu hesaplayıcı en az 200 × 100 mm olan parçaları artık sayar ve yeşille gösterir. Fire yalnızca gerçekten atılan kısımdır: testere payı ve kullanılamayacak kadar ince şeritler.</p>
+    <p>İki plan aynı sayıda levha kullanıyorsa daha büyük artık bırakan seçilir.</p>
+
+    <h2>Testere payı, kenar payı ve damar</h2>
+    <p><b>Testere payı</b>, bıçağın her kesimde talaşa çevirdiği kalınlıktır; genelde 3–4 mm. Hesap bu payı parçaların arasında bırakır, yani yazdığın ölçü elindeki ölçü olur.</p>
+    <p><b>Kenar payı</b>, levhanın her kenarından önce kesilip atılan şerittir. Fabrika kenarı bozuksa kullan.</p>
+    <p><b>Damar</b>: ahşap desenli suntalam ya da kaplamalı levhada damarı aç; her parçanın boyu levhanın boyuyla aynı yönde kalır. Damar kapalıyken parçalar daha iyi sığsın diye döndürülebilir.</p>
+
+    <h2>Sorular</h2>
+    <dl>
+      <dt>Ücretsiz mi?</dt>
+      <dd>Evet. Üyelik yok, reklam yok, kullanım sınırı yok.</dd>
+      <dt>Ölçülerim bir yere gönderiliyor mu?</dt>
+      <dd>Hayır. Hesap tarayıcında yapılır. Paylaşım bağlantısı ölçüleri adresin # işaretinden sonraki kısmında taşır; tarayıcılar bu kısmı sunucuya göndermez.</dd>
+      <dt>Uygulamayla aynı hesap mı?</dt>
+      <dd>Evet. Bu sayfa 0X Cut uygulamasındaki kesim motorunun aynısını kullanır.</dd>
+      <dt>Web sürümünde neler yok?</dt>
+      <dd>Sayfa tek levha ölçüsüyle en fazla 300 parça planlar. Uygulamada bir işte birden çok malzeme ve levha ölçüsü, artıkları kullanma, testere için kesim sırası, PDF ve etiket var; işlerin de kaydedilir.</dd>
+      <dt>Sunta, MDF ve kontrplak için olur mu?</dt>
+      <dd>Evet, ve her dikdörtgen levha için: cam, pleksi ya da kompozit panel. Yeter ki her kesim panel ebatlama ya da daire testeredeki gibi parçayı baştan başa geçsin.</dd>
+    </dl>
+  </article>
+
+  <footer>Çerez yok, takip yok. Hesap tarayıcında yapılır; ölçülerin hiçbir yere gönderilmez.<br><a href="/">0X Studio</a> · <a href="mailto:0xstudioapps@gmail.com">0xstudioapps@gmail.com</a></footer>
+</main>
+<script type="application/json" id="calc-config">{"decimalComma":true,"unit":"mm","sheet":[2800,2070],"kerf":3.2,"presets":[{"l":2800,"w":2070},{"l":3660,"w":1830},{"name":"8×4","l":2440,"w":1220}],"presetsIn":[{"name":"8×4 ft","l":2438.4,"w":1219.2}],"example":[{"name":"Yan","l":2100,"w":560,"q":2},{"name":"Alt-üst","l":864,"w":560,"q":2},{"name":"Raf","l":864,"w":540,"q":3},{"name":"Kapak","l":2096,"w":446,"q":2}],"strings":{"name":"Ad","length":"Boy","width":"En","qty":"Adet","remove":"Parçayı sil","pct":"%{n}","needSheet":"Levhanın boyunu ve enini gir.","empty":"Boyu ve eni olan en az bir parça gir.","tooMany":"Web sürümü en fazla {max} parça planlar. Daha büyük işler için ücretsiz 0X Cut uygulamasını kullan.","calculating":"Hesaplanıyor…","error":"Bir şeyler ters gitti. Ölçüleri kontrol edip tekrar dene.","tooLarge":"{name} ×{n} bu levhaya sığmıyor.","sheetOne":"Levha {i}","sheetRange":"Levha {a}–{b} (×{n})","usedOf":"{p} kullanıldı","offcut":"artık","moreSheets":"+{n} levha daha (uygulama hepsini gösterir)","svgLabel":"{title}: {n} parça, {p} kullanıldı","copied":"Bağlantı kopyalandı"}}</script>
+<script src="/assets/calc/cut.js" defer></script>
+</body>
+</html>

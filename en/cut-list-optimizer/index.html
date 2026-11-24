@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cut List Optimizer – Free Sheet Cutting Layout for Plywood &amp; MDF | 0X Cut</title>
+<meta name="description" content="Free cut list optimizer: enter your sheet and part sizes and get the cutting layout in seconds. Plywood, MDF, chipboard; mm, cm or inches. Runs in your browser.">
+<link rel="canonical" href="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<link rel="alternate" hreflang="en" href="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<link rel="alternate" hreflang="tr" href="https://0xstudioapps.github.io/tr/sunta-mdf-kesim-plani/">
+<link rel="alternate" hreflang="x-default" href="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="0X Studio">
+<meta property="og:title" content="Cut List Optimizer">
+<meta property="og:description" content="Free cut list optimizer: enter your sheet and part sizes and get the cutting layout in seconds. Plywood, MDF, chipboard; mm, cm or inches. Runs in your browser.">
+<meta property="og:url" content="https://0xstudioapps.github.io/en/cut-list-optimizer/">
+<meta property="og:image" content="https://0xstudioapps.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/cutplan.png">
+<link rel="stylesheet" href="/assets/calc/calc.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Cut List Optimizer", "url": "https://0xstudioapps.github.io/en/cut-list-optimizer/", "description": "Free cut list optimizer: enter your sheet and part sizes and get the cutting layout in seconds. Plywood, MDF, chipboard; mm, cm or inches. Runs in your browser.", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "0X Studio", "url": "https://0xstudioapps.github.io/"}}</script>
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="brand" href="/"><img src="/logo.svg" alt="0X Studio" width="39" height="26"><span>0X Cut</span></a>
+    <nav class="langs" aria-label="Language"><a href="/en/cut-list-optimizer/" hreflang="en" lang="en" aria-current="page">EN</a><a href="/tr/sunta-mdf-kesim-plani/" hreflang="tr" lang="tr">TR</a></nav>
+  </header>
+
+  <h1>Cut List Optimizer</h1>
+  <p class="lead">Enter your sheet and part sizes. See how many sheets you need and where every part goes. Free, no sign-up, and your sizes never leave your device.</p>
+
+  <section class="card" aria-labelledby="sheet-h">
+    <div class="card-title">
+      <h2 id="sheet-h">Sheet</h2>
+      <div class="seg" id="units" role="group" aria-label="Unit"><button type="button" data-unit="mm">mm</button><button type="button" data-unit="cm">cm</button><button type="button" data-unit="in">in</button></div>
+    </div>
+    <div class="sheet-dims">
+      <label class="f"><span>Length (<span data-unit-label>mm</span>)</span><input type="text" id="sl" inputmode="decimal" autocomplete="off"></label>
+      <span class="x">×</span>
+      <label class="f"><span>Width (<span data-unit-label>mm</span>)</span><input type="text" id="sw" inputmode="decimal" autocomplete="off"></label>
+    </div>
+    <div class="chips" id="presets" role="group" aria-label="Common sheet sizes"></div>
+  </section>
+
+  <section class="card" aria-labelledby="parts-h">
+    <div class="card-title">
+      <h2 id="parts-h">Parts</h2>
+      <button type="button" class="btn ghost" id="clear" style="padding:5px 10px;font-size:13px">Clear</button>
+    </div>
+    <div class="row head" aria-hidden="true"><span>Name</span><span>Length</span><span>Width</span><span>Qty</span><span></span></div>
+    <div class="rows" id="rows"></div>
+    <div class="row-actions"><button type="button" class="btn ghost" id="add">+ Add part</button></div>
+    <p class="hint">Tip: you can paste rows from Excel or a message (name, length, width, quantity).</p>
+    <details class="more">
+      <summary>Saw kerf, edge trim, grain</summary>
+      <div class="opts">
+        <label class="f"><span>Saw kerf (<span data-unit-label>mm</span>)</span><input type="text" id="kerf" inputmode="decimal" autocomplete="off"></label>
+        <label class="f"><span>Edge trim (<span data-unit-label>mm</span>)</span><input type="text" id="trim" inputmode="decimal" autocomplete="off"></label>
+        <label class="check"><input type="checkbox" id="grain"><span>Sheet has grain: keep each part&#x27;s length along the sheet&#x27;s length</span></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="res-h">
+    <div class="card-title"><h2 id="res-h">Cutting layout</h2></div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="r-sheets">–</b><span>Sheets</span></div>
+      <div class="stat"><b id="r-used">–</b><span><i class="k-used"></i>Used</span></div>
+      <div class="stat"><b id="r-off">–</b><span><i class="k-off"></i>Offcut</span></div>
+      <div class="stat"><b id="r-waste">–</b><span><i class="k-waste"></i>Waste</span></div>
+    </div>
+    <div class="meter" id="meter" aria-hidden="true"><i class="k-used"></i><i class="k-off"></i><i class="k-waste"></i></div>
+    <p class="status" id="status"></p>
+    <div class="warn" id="warn" hidden></div>
+    <noscript><p class="warn">This calculator needs JavaScript.</p></noscript>
+    <div class="sheets" id="sheets"></div>
+    <div class="share"><button type="button" class="btn ghost" id="share">Share this plan</button><small id="share-msg" aria-live="polite"></small></div>
+  </section>
+
+  <section class="card cta" aria-labelledby="cta-h">
+    <div class="cta-head">
+      <img src="/cutplan.png" alt="" width="52" height="52">
+      <div><h2 id="cta-h">Take the plan to the saw</h2><p>0X Cut, a free app for Android</p></div>
+    </div>
+    <ul><li>Every cut in workshop order, with the strip width to set on your saw</li><li>PDF on A4 or Letter, pictures for WhatsApp, Excel and part labels</li><li>Several materials in one job, edge banding, triangles and circles</li><li>Saves your jobs and works offline</li></ul>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan&amp;referrer=utm_source%3Dweb%26utm_medium%3Dcalculator%26utm_campaign%3Dcut_list_en">Get it on Google Play</a>
+    <p class="fine">Free, no account, no ads. Optional Pro adds offcut inventory, quotes with your logo, QR labels and the cabinet module.</p>
+  </section>
+
+  <article>
+<h2>How to use the cut list optimizer</h2>
+    <ol>
+      <li><b>Pick the sheet.</b> Type its length and width or tap a common size. Choose mm, cm or inches; inches can have fractions like 23 1/2.</li>
+      <li><b>List the parts.</b> One row per part size, with the quantity. Names are optional; empty names get the letters A, B, C.</li>
+      <li><b>Read the layout.</b> The plan updates as you type. Every sheet is drawn to scale with the part names and sizes on it.</li>
+    </ol>
+
+    <h2>Used, offcut and waste are three different things</h2>
+    <p>A sheet that is 84% used is not 16% waste. Part of what is left is usually a clean offcut you can keep for the next job: a drawer bottom, a shelf, a small cabinet back. This calculator counts pieces of at least 200 × 100 mm (8 × 4 in) as offcuts and shows them in green. Waste is only what really goes in the bin: saw kerf and strips too small to use.</p>
+    <p>When two layouts need the same number of sheets, the optimizer keeps the one that leaves the bigger offcut.</p>
+
+    <h2>Saw kerf, edge trim and grain</h2>
+    <p><b>Saw kerf</b> is the material the blade turns into dust in every cut, usually 3 to 4 mm (about 1/8 in). The optimizer leaves it between the parts, so the sizes you enter are the sizes you get.</p>
+    <p><b>Edge trim</b> cuts a strip off every edge of the sheet first. Use it when the factory edges are damaged.</p>
+    <p><b>Grain</b>: for veneered boards or melamine with a wood pattern, turn on grain and every part keeps its length along the sheet's length. Without grain, parts may be turned to fit better.</p>
+
+    <h2>Questions</h2>
+    <dl>
+      <dt>Is it free?</dt>
+      <dd>Yes. No sign-up, no ads, no limit on how often you use it.</dd>
+      <dt>Are my sizes sent anywhere?</dt>
+      <dd>No. The optimizer runs in your browser. The share link carries the sizes after the # sign, a part of the address that browsers do not send to servers.</dd>
+      <dt>Is it the same calculation as the app?</dt>
+      <dd>Yes. This page runs the same cutting optimizer as the 0X Cut app.</dd>
+      <dt>What does the web version leave out?</dt>
+      <dd>The page plans one sheet size with up to 300 pieces. The app adds several materials and sheet sizes in one job, offcut reuse, the cut order for your saw, PDF and labels, and it saves your jobs.</dd>
+      <dt>Does it work for plywood, MDF and chipboard?</dt>
+      <dd>Yes, and for any rectangular sheet such as glass, acrylic or aluminum composite, as long as every cut goes straight across the piece, like on a panel saw or a table saw.</dd>
+    </dl>
+  </article>
+
+  <footer>No cookies, no tracking. The calculation runs in your browser; your sizes are not sent anywhere.<br><a href="/">0X Studio</a> · <a href="mailto:0xstudioapps@gmail.com">0xstudioapps@gmail.com</a></footer>
+</main>
+<script type="application/json" id="calc-config">{"decimalComma":false,"unit":"mm","sheet":[2440,1220],"kerf":3.2,"presets":[{"name":"8×4 ft","l":2440,"w":1220},{"l":2800,"w":2070},{"l":2750,"w":1830},{"l":3660,"w":1830}],"presetsIn":[{"name":"8×4 ft","l":2438.4,"w":1219.2},{"name":"10×5 ft","l":3048,"w":1524},{"name":"5×5 ft","l":1524,"w":1524}],"example":[{"name":"Side","l":2100,"w":560,"q":2},{"name":"Top/bottom","l":864,"w":560,"q":2},{"name":"Shelf","l":864,"w":540,"q":3},{"name":"Door","l":2096,"w":446,"q":2}],"imperialExample":{"sheet":[2438.4,1219.2],"kerf":3.175,"trim":0,"grain":false,"parts":[{"name":"Side","l":2133.6,"w":558.8,"q":2},{"name":"Top/bottom","l":876.3,"w":558.8,"q":2},{"name":"Shelf","l":876.3,"w":533.4,"q":3},{"name":"Door","l":2127.25,"w":450.85,"q":2}]},"strings":{"name":"Name","length":"Length","width":"Width","qty":"Qty","remove":"Remove part","pct":"{n}%","needSheet":"Enter the sheet length and width.","empty":"Enter at least one part with a length and a width.","tooMany":"The web version plans up to {max} pieces. For bigger jobs, use the free 0X Cut app.","calculating":"Calculating…","error":"Something went wrong. Check the sizes and try again.","tooLarge":"{name} ×{n} does not fit on this sheet.","sheetOne":"Sheet {i}","sheetRange":"Sheets {a}–{b} (×{n})","usedOf":"{p} used","offcut":"offcut","moreSheets":"+{n} more sheets (the app shows them all)","svgLabel":"{title}: {n} parts, {p} used","copied":"Link copied"}}</script>
+<script src="/assets/calc/cut.js" defer></script>
+</body>
+</html>
