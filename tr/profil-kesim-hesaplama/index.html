@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profil ve Boru Kesim Hesaplama – Ücretsiz Boy Kesim Planı (6 m) | 0X Cut</title>
+<meta name="description" content="Ücretsiz profil kesim hesaplama: boy uzunluğunu ve gereken parçaları yazın, kaç boy alacağınızı ve her boyu nereden keseceğinizi görün. Demir, alüminyum, PVC, boru, kereste.">
+<link rel="canonical" href="https://0xstudioapps.github.io/tr/profil-kesim-hesaplama/">
+<link rel="alternate" hreflang="en" href="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<link rel="alternate" hreflang="tr" href="https://0xstudioapps.github.io/tr/profil-kesim-hesaplama/">
+<link rel="alternate" hreflang="x-default" href="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="0X Studio">
+<meta property="og:title" content="Profil Kesim Hesaplama">
+<meta property="og:description" content="Ücretsiz profil kesim hesaplama: boy uzunluğunu ve gereken parçaları yazın, kaç boy alacağınızı ve her boyu nereden keseceğinizi görün. Demir, alüminyum, PVC, boru, kereste.">
+<meta property="og:url" content="https://0xstudioapps.github.io/tr/profil-kesim-hesaplama/">
+<meta property="og:image" content="https://0xstudioapps.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/cutplan.png">
+<link rel="stylesheet" href="/assets/calc/calc.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Profil Kesim Hesaplama", "url": "https://0xstudioapps.github.io/tr/profil-kesim-hesaplama/", "description": "Ücretsiz profil kesim hesaplama: boy uzunluğunu ve gereken parçaları yazın, kaç boy alacağınızı ve her boyu nereden keseceğinizi görün. Demir, alüminyum, PVC, boru, kereste.", "inLanguage": "tr", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "0X Studio", "url": "https://0xstudioapps.github.io/"}}</script>
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="brand" href="/"><img src="/logo.svg" alt="0X Studio" width="39" height="26"><span>0X Cut</span></a>
+    <nav class="langs" aria-label="Dil"><a href="/en/linear-cut-optimizer/" hreflang="en" lang="en">EN</a><a href="/tr/profil-kesim-hesaplama/" hreflang="tr" lang="tr" aria-current="page">TR</a></nav>
+  </header>
+
+  <h1>Profil Kesim Hesaplama</h1>
+  <p class="lead">Boy uzunluğunu ve gereken parçaları yazın. Kaç boy alacağınızı, her boyun nereden kesileceğini ve elde ne kalacağını görün. Ücretsiz, üyelik yok, ölçüleriniz cihazınızdan çıkmaz.</p>
+
+  <section class="card" aria-labelledby="sheet-h">
+    <div class="card-title">
+      <h2 id="sheet-h">Boy</h2>
+      <div class="seg" id="units" role="group" aria-label="Birim"><button type="button" data-unit="mm">mm</button><button type="button" data-unit="cm">cm</button><button type="button" data-unit="in">in</button></div>
+    </div>
+    <div class="bar-dims">
+      <label class="f"><span>Boy uzunluğu (<span data-unit-label>mm</span>)</span><input type="text" id="bl" inputmode="decimal" autocomplete="off"></label>
+    </div>
+    <div class="chips" id="presets" role="group" aria-label="Yaygın boy uzunlukları"></div>
+  </section>
+
+  <section class="card" aria-labelledby="parts-h">
+    <div class="card-title">
+      <h2 id="parts-h">Parçalar</h2>
+      <button type="button" class="btn ghost" id="clear" style="padding:5px 10px;font-size:13px">Temizle</button>
+    </div>
+    <div class="row head b3" aria-hidden="true"><span>Ad</span><span>Uzunluk</span><span>Adet</span><span></span></div>
+    <div class="rows b3" id="rows"></div>
+    <div class="row-actions"><button type="button" class="btn ghost" id="add">+ Parça ekle</button></div>
+    <p class="hint">İpucu: Excel&#x27;den ya da bir mesajdan satırları yapıştırabilirsiniz (ad, uzunluk, adet).</p>
+    <details class="more">
+      <summary>Testere payı, uç kesme</summary>
+      <div class="opts">
+        <label class="f"><span>Testere payı (<span data-unit-label>mm</span>)</span><input type="text" id="kerf" inputmode="decimal" autocomplete="off"></label>
+        <label class="f"><span>Uç kesme (<span data-unit-label>mm</span>)</span><input type="text" id="trim" inputmode="decimal" autocomplete="off"></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="res-h">
+    <div class="card-title"><h2 id="res-h">Kesim planı</h2></div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="r-sheets">–</b><span>Boy</span></div>
+      <div class="stat"><b id="r-used">–</b><span><i class="k-used"></i>Kullanılan</span></div>
+      <div class="stat"><b id="r-off">–</b><span><i class="k-off"></i>Artık</span></div>
+      <div class="stat"><b id="r-waste">–</b><span><i class="k-waste"></i>Fire</span></div>
+    </div>
+    <div class="meter" id="meter" aria-hidden="true"><i class="k-used"></i><i class="k-off"></i><i class="k-waste"></i></div>
+    <p class="status" id="status"></p>
+    <div class="warn" id="warn" hidden></div>
+    <noscript><p class="warn">Bu hesaplayıcı için JavaScript gerekir.</p></noscript>
+    <div class="sheets" id="sheets"></div>
+    <div class="share"><button type="button" class="btn ghost" id="share">Bu planı paylaş</button><small id="share-msg" aria-live="polite"></small></div>
+  </section>
+
+  <section class="card cta" aria-labelledby="cta-h">
+    <div class="cta-head">
+      <img src="/cutplan.png" alt="" width="52" height="52">
+      <div><h2 id="cta-h">Planı tezgâha götürün</h2><p>0X Cut, Android için ücretsiz uygulama</p></div>
+    </div>
+    <ul><li>Bir işte birden çok boy uzunluğu ve elinizdeki artıklar</li><li>Her boyun kesim listesi, PDF, WhatsApp için resim ve Excel</li><li>Sunta, MDF ve kontrplak levha kesim planı da var</li><li>İşlerinizi saklar, internetsiz çalışır</li></ul>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan&amp;referrer=utm_source%3Dweb%26utm_medium%3Dcalculator%26utm_campaign%3Dprofil_kesim_tr">Google Play&#x27;den indirin</a>
+    <p class="fine">Ücretsiz, hesap yok, reklam yok. İsteğe bağlı Pro; artık stoğu, logolu teklif, QR etiket ve dolap modülü ekler.</p>
+  </section>
+
+  <article>
+<h2>Profil kesim hesaplama nasıl kullanılır</h2>
+    <ol>
+      <li><b>Boy uzunluğunu girin.</b> Aldığınız malzemenin boyunu yazın ya da yaygın bir boya dokunun: 6 m demir ve alüminyum, 6,5 m PVC profil, 12 m inşaat demiri. Birim mm, cm ya da inç olabilir.</li>
+      <li><b>Parçaları yazın.</b> Her parça uzunluğu için bir satır ve adedi. Ad yazmak zorunlu değil; boş adlar A, B, C olur.</li>
+      <li><b>Planı okuyun.</b> Siz yazdıkça güncellenir. Her boy ölçekli çizilir; parçalar soldan sağa kesim sırasıyla, adları ve uzunluklarıyla görünür.</li>
+    </ol>
+
+    <h2>Kullanılan, artık ve fire</h2>
+    <p>Boyun sonunda kalan her şey fire değildir. 300 mm ve daha uzunsa plan onu yeşil ile artık olarak gösterir; bir sonraki işte kullanabilirsiniz. Fire, testerenin talaşa çevirdiği kısım ve kimsenin kullanamayacağı kısa uçlardır. İki plan aynı sayıda boy gerektiriyorsa hesap, daha uzun artık bırakanı seçer.</p>
+
+    <h2>Testere payı ve uç kesme</h2>
+    <p><b>Testere payı</b>, her kesimde bıçağın aldığı kalınlıktır: demir ve alüminyum kesme makinesinde yaklaşık 3 mm, şerit testerede 1–2 mm. Hesap bu payı parçaların arasında bırakır; yazdığınız uzunluk, elinize geçen uzunluktur.</p>
+    <p><b>Uç kesme</b>, her boyun iki ucundan önce biraz keser. Uçlar eğri, paslı ya da gönyesizse kullanın.</p>
+
+    <h2>Sorular</h2>
+    <dl>
+      <dt>Ücretsiz mi?</dt>
+      <dd>Evet. Üyelik yok, reklam yok, kullanım sınırı yok.</dd>
+      <dt>Hangi işlerde kullanılır?</dt>
+      <dd>Düz malzemeden boy kesilen her işte: kutu profil, köşebent, alüminyum ve PVC doğrama profili, boru, inşaat demiri, kereste, korniş, kablo kanalı.</dd>
+      <dt>Ölçülerim bir yere gönderiliyor mu?</dt>
+      <dd>Hayır. Hesap tarayıcınızda yapılır. Paylaşım bağlantısı ölçüleri adresin # işaretinden sonraki kısmında taşır; tarayıcılar bu kısmı sunuculara göndermez.</dd>
+      <dt>Uygulamadaki hesapla aynı mı?</dt>
+      <dd>Evet. Bu sayfa, 0X Cut uygulamasıyla aynı kesim hesabını kullanır.</dd>
+      <dt>Web sürümünde neler yok?</dt>
+      <dd>Sayfa tek boy uzunluğuyla en çok 500 parça planlar. Uygulama bir işte birden çok boy uzunluğu ve elinizdeki artıkları, PDF ve paylaşılacak resmi ekler, işlerinizi de saklar.</dd>
+      <dt>Ben levha kesiyorum.</dt>
+      <dd><a href="/tr/sunta-mdf-kesim-plani/">Sunta ve MDF levha kesim planı</a> sayfasını kullanın.</dd>
+    </dl>
+  </article>
+
+  <footer>Çerez yok, takip yok. Hesap tarayıcınızda yapılır; ölçüleriniz hiçbir yere gönderilmez.<br><a href="/">0X Studio</a> · <a href="mailto:0xstudioapps@gmail.com">0xstudioapps@gmail.com</a></footer>
+</main>
+<script type="application/json" id="calc-config">{"decimalComma":true,"unit":"mm","bar":6000,"kerf":3,"presets":[{"name":"Demir / alüminyum","l":6000},{"name":"PVC profil","l":6500},{"name":"İnşaat demiri","l":12000},{"l":3000},{"l":4000}],"example":[{"name":"Üst kuşak","l":1500,"q":2},{"name":"Yan kuşak","l":700,"q":4},{"name":"Ayak","l":750,"q":4},{"name":"Alt kuşak","l":1500,"q":2}],"strings":{"name":"Ad","length":"Uzunluk","qty":"Adet","remove":"Parçayı sil","pct":"%{n}","needBar":"Boy uzunluğunu yazın.","empty":"Uzunluğu olan en az bir parça yazın.","tooMany":"Web sürümü en çok {max} parça planlar. Daha büyük işler için ücretsiz 0X Cut uygulamasını kullanın.","calculating":"Hesaplanıyor…","error":"Bir şeyler ters gitti. Ölçüleri kontrol edip yeniden deneyin.","tooLong":"{name} ×{n} boydan uzun.","barOne":"{i}. boy","barRange":"{a}–{b}. boylar (×{n})","usedOf":"{p} kullanıldı","offcut":"artık","moreBars":"+{n} boy daha (uygulama hepsini gösterir)","svgLabel":"{title}: {n} parça, {p} kullanıldı","copied":"Bağlantı kopyalandı"}}</script>
+<script src="/assets/calc/bars.js" defer></script>
+</body>
+</html>

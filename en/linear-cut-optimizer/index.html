@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear Cut Optimizer – Free Cutting Plan for Bars, Pipes &amp; Profiles | 0X Cut</title>
+<meta name="description" content="Free linear cut optimizer: enter your bar length and the pieces you need, and see how many bars to buy and where to cut each one. Steel, aluminum, PVC, pipe, timber.">
+<link rel="canonical" href="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<link rel="alternate" hreflang="en" href="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<link rel="alternate" hreflang="tr" href="https://0xstudioapps.github.io/tr/profil-kesim-hesaplama/">
+<link rel="alternate" hreflang="x-default" href="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="0X Studio">
+<meta property="og:title" content="Linear Cut Optimizer">
+<meta property="og:description" content="Free linear cut optimizer: enter your bar length and the pieces you need, and see how many bars to buy and where to cut each one. Steel, aluminum, PVC, pipe, timber.">
+<meta property="og:url" content="https://0xstudioapps.github.io/en/linear-cut-optimizer/">
+<meta property="og:image" content="https://0xstudioapps.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/cutplan.png">
+<link rel="stylesheet" href="/assets/calc/calc.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Linear Cut Optimizer", "url": "https://0xstudioapps.github.io/en/linear-cut-optimizer/", "description": "Free linear cut optimizer: enter your bar length and the pieces you need, and see how many bars to buy and where to cut each one. Steel, aluminum, PVC, pipe, timber.", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "0X Studio", "url": "https://0xstudioapps.github.io/"}}</script>
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="brand" href="/"><img src="/logo.svg" alt="0X Studio" width="39" height="26"><span>0X Cut</span></a>
+    <nav class="langs" aria-label="Language"><a href="/en/linear-cut-optimizer/" hreflang="en" lang="en" aria-current="page">EN</a><a href="/tr/profil-kesim-hesaplama/" hreflang="tr" lang="tr">TR</a></nav>
+  </header>
+
+  <h1>Linear Cut Optimizer</h1>
+  <p class="lead">Enter your bar length and the pieces you need. See how many bars to buy, where to cut each one and what is left. Free, no sign-up, and your sizes never leave your device.</p>
+
+  <section class="card" aria-labelledby="sheet-h">
+    <div class="card-title">
+      <h2 id="sheet-h">Stock bar</h2>
+      <div class="seg" id="units" role="group" aria-label="Unit"><button type="button" data-unit="mm">mm</button><button type="button" data-unit="cm">cm</button><button type="button" data-unit="in">in</button></div>
+    </div>
+    <div class="bar-dims">
+      <label class="f"><span>Bar length (<span data-unit-label>mm</span>)</span><input type="text" id="bl" inputmode="decimal" autocomplete="off"></label>
+    </div>
+    <div class="chips" id="presets" role="group" aria-label="Common bar lengths"></div>
+  </section>
+
+  <section class="card" aria-labelledby="parts-h">
+    <div class="card-title">
+      <h2 id="parts-h">Pieces</h2>
+      <button type="button" class="btn ghost" id="clear" style="padding:5px 10px;font-size:13px">Clear</button>
+    </div>
+    <div class="row head b3" aria-hidden="true"><span>Name</span><span>Length</span><span>Qty</span><span></span></div>
+    <div class="rows b3" id="rows"></div>
+    <div class="row-actions"><button type="button" class="btn ghost" id="add">+ Add piece</button></div>
+    <p class="hint">Tip: you can paste rows from Excel or a message (name, length, quantity).</p>
+    <details class="more">
+      <summary>Saw kerf, end trim</summary>
+      <div class="opts">
+        <label class="f"><span>Saw kerf (<span data-unit-label>mm</span>)</span><input type="text" id="kerf" inputmode="decimal" autocomplete="off"></label>
+        <label class="f"><span>End trim (<span data-unit-label>mm</span>)</span><input type="text" id="trim" inputmode="decimal" autocomplete="off"></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="res-h">
+    <div class="card-title"><h2 id="res-h">Cutting plan</h2></div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="r-sheets">–</b><span>Bars</span></div>
+      <div class="stat"><b id="r-used">–</b><span><i class="k-used"></i>Used</span></div>
+      <div class="stat"><b id="r-off">–</b><span><i class="k-off"></i>Offcut</span></div>
+      <div class="stat"><b id="r-waste">–</b><span><i class="k-waste"></i>Waste</span></div>
+    </div>
+    <div class="meter" id="meter" aria-hidden="true"><i class="k-used"></i><i class="k-off"></i><i class="k-waste"></i></div>
+    <p class="status" id="status"></p>
+    <div class="warn" id="warn" hidden></div>
+    <noscript><p class="warn">This calculator needs JavaScript.</p></noscript>
+    <div class="sheets" id="sheets"></div>
+    <div class="share"><button type="button" class="btn ghost" id="share">Share this plan</button><small id="share-msg" aria-live="polite"></small></div>
+  </section>
+
+  <section class="card cta" aria-labelledby="cta-h">
+    <div class="cta-head">
+      <img src="/cutplan.png" alt="" width="52" height="52">
+      <div><h2 id="cta-h">Take the plan to the saw</h2><p>0X Cut, a free app for Android</p></div>
+    </div>
+    <ul><li>Several bar lengths and your offcut stock in one job</li><li>Cut list for every bar, PDF, pictures for WhatsApp and Excel</li><li>Sheet cut lists for plywood and MDF too</li><li>Saves your jobs and works offline</li></ul>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.zeroxstudio.cutplan&amp;referrer=utm_source%3Dweb%26utm_medium%3Dcalculator%26utm_campaign%3Dlinear_cut_en">Get it on Google Play</a>
+    <p class="fine">Free, no account, no ads. Optional Pro adds offcut inventory, quotes with your logo, QR labels and the cabinet module.</p>
+  </section>
+
+  <article>
+<h2>How to use the linear cut optimizer</h2>
+    <ol>
+      <li><b>Set the bar length.</b> Type the length of the stock you buy, or tap a common one: 6 m steel and aluminum, 6.5 m PVC profile, 12 m rebar, timber lengths. Choose mm, cm or inches; inches can have fractions like 34 1/2.</li>
+      <li><b>List the pieces.</b> One row per piece length, with the quantity. Names are optional; empty names get the letters A, B, C.</li>
+      <li><b>Read the plan.</b> It updates as you type. Every bar is drawn to scale, left to right in cutting order, with the piece names and lengths on it.</li>
+    </ol>
+
+    <h2>Used, offcut and waste</h2>
+    <p>What is left at the end of a bar is not always waste. If it is 300 mm (12 in) or longer, the plan marks it green as an offcut you can keep for the next job. Waste is what the saw turns into chips plus the short ends nobody can use. When two plans need the same number of bars, the optimizer keeps the one that leaves the longer offcuts.</p>
+
+    <h2>Saw kerf and end trim</h2>
+    <p><b>Saw kerf</b> is the material the blade removes in every cut: about 3 mm for a metal chop saw or a miter saw, 1 to 2 mm for a band saw. The optimizer leaves it between the pieces, so the lengths you enter are the lengths you get.</p>
+    <p><b>End trim</b> cuts a little off both ends of every bar first. Use it when the ends are bent, rusty or not square.</p>
+
+    <h2>Questions</h2>
+    <dl>
+      <dt>Is it free?</dt>
+      <dd>Yes. No sign-up, no ads, no limit on how often you use it.</dd>
+      <dt>What can I plan with it?</dt>
+      <dd>Anything cut to length from straight stock: steel tube and angle, aluminum and PVC window profiles, pipe, rebar, timber, curtain rails, cable trays.</dd>
+      <dt>Are my sizes sent anywhere?</dt>
+      <dd>No. The optimizer runs in your browser. The share link carries the sizes after the # sign, a part of the address that browsers do not send to servers.</dd>
+      <dt>Is it the same calculation as the app?</dt>
+      <dd>Yes. This page runs the same cutting optimizer as the 0X Cut app.</dd>
+      <dt>What does the web version leave out?</dt>
+      <dd>The page plans one bar length with up to 500 pieces. The app adds several bar lengths and your offcut stock in one job, PDF and pictures to share, and it saves your jobs.</dd>
+      <dt>I cut sheets, not bars.</dt>
+      <dd>Use the <a href="/en/cut-list-optimizer/">cut list optimizer for plywood and MDF sheets</a>.</dd>
+    </dl>
+  </article>
+
+  <footer>No cookies, no tracking. The calculation runs in your browser; your sizes are not sent anywhere.<br><a href="/">0X Studio</a> · <a href="mailto:0xstudioapps@gmail.com">0xstudioapps@gmail.com</a></footer>
+</main>
+<script type="application/json" id="calc-config">{"decimalComma":false,"unit":"mm","bar":6000,"kerf":3,"presets":[{"name":"Steel / alu","l":6000},{"name":"PVC profile","l":6500},{"name":"Rebar","l":12000},{"name":"Timber","l":2400},{"l":4800}],"presetsIn":[{"name":"20 ft","l":6096},{"name":"24 ft","l":7315.2},{"name":"8 ft","l":2438.4},{"name":"10 ft","l":3048},{"name":"12 ft","l":3657.6},{"name":"16 ft","l":4876.8}],"example":[{"name":"Top rail","l":1500,"q":2},{"name":"Side rail","l":700,"q":4},{"name":"Leg","l":750,"q":4},{"name":"Shelf rail","l":1500,"q":2}],"imperialExample":{"bar":6096,"kerf":3.175,"trim":0,"parts":[{"name":"Top rail","l":1524,"q":2},{"name":"Side rail","l":711.2,"q":4},{"name":"Leg","l":749.3,"q":4},{"name":"Shelf rail","l":1524,"q":2}]},"strings":{"name":"Name","length":"Length","qty":"Qty","remove":"Remove piece","pct":"{n}%","needBar":"Enter the bar length.","empty":"Enter at least one piece with a length.","tooMany":"The web version plans up to {max} pieces. For bigger jobs, use the free 0X Cut app.","calculating":"Calculating…","error":"Something went wrong. Check the sizes and try again.","tooLong":"{name} ×{n} is longer than the bar.","barOne":"Bar {i}","barRange":"Bars {a}–{b} (×{n})","usedOf":"{p} used","offcut":"offcut","moreBars":"+{n} more bars (the app shows them all)","svgLabel":"{title}: {n} pieces, {p} used","copied":"Link copied"}}</script>
+<script src="/assets/calc/bars.js" defer></script>
+</body>
+</html>

@@ -149,3 +149,11 @@ footer a { color: var(--ink); }
   body { background: #fff; }
   .card { break-inside: avoid; }
 }
+
+/* Boy kesim sayfası: tek ölçü (çubuk boyu), parça satırında en yok. */
+.bar-dims { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 260px; }
+.row.b3, .rows.b3 .row { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, .7fr) 36px; }
+figure.bar svg { display: block; width: 100%; height: auto; }
+@media (max-width: 520px) {
+  .row.b3, .rows.b3 .row { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, .62fr) 30px; gap: 4px; }
+}
